@@ -32,6 +32,7 @@ import (
 	"github.com/hidevopsio/hiboot/pkg/system/scheduler"
 	"github.com/hidevopsio/hiboot/pkg/utils/cmap"
 	"github.com/hidevopsio/hiboot/pkg/utils/io"
+	"github.com/hidevopsio/iris/core/router"
 )
 
 const (
@@ -60,6 +61,7 @@ type ApplicationContext interface {
 	Use(handlers ...context.Handler)
 	GetProperty(name string) (value interface{}, ok bool)
 	GetInstance(params ...interface{}) (instance interface{})
+	WrapRouter(handler router.WrapperFunc)
 }
 
 // BaseApplication is the base application

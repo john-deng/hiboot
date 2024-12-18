@@ -28,6 +28,7 @@ import (
 	"github.com/hidevopsio/hiboot/pkg/log"
 	"github.com/hidevopsio/hiboot/pkg/utils/io"
 	"github.com/hidevopsio/iris"
+	"github.com/hidevopsio/iris/core/router"
 )
 
 const (
@@ -194,6 +195,10 @@ func (a *application) Use(handlers ...context.Handler) {
 	for _, hdl := range handlers {
 		a.webApp.Use(Handler(hdl))
 	}
+}
+
+func (a *application) WrapRouter(handler router.WrapperFunc) {
+	a.webApp.WrapRouter(handler)
 }
 
 func (a *application) initialize(controllers ...interface{}) (err error) {
